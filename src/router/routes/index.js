@@ -13,7 +13,7 @@ export default [
 			name: "pages-home",
 			meta: { requiresAuth: true },
 		},
-		defaultComponentPath: "Pages/auth/Login",
+		defaultComponentPath: "Pages/Home/index",
 	},
 	{
 	params: {
