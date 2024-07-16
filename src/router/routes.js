@@ -35,4 +35,4 @@ const routes = AllRoutes.map((route) => {
   };
 });
 
-export default [{ path: "/" }, ...routes];
+export default [{ path: "/", redirect: '/home' }, ...routes];
