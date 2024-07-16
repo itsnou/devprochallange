@@ -23,8 +23,8 @@
           <!-- password -->
           <VCol cols="12">
             <a
-              class="text-primary ms-2 mb-1 link"
-              :to="{ name: 'recuperacion' }"
+              class="mb-1"
+              href="/recuperacion"
             >
               ¿Olvidaste tu contraseña?
             </a>
@@ -62,6 +62,8 @@
 <script>
 import authLayout from '@/layouts/Auth.vue'
 import { requiredValidator, emailValidator, passwordValidator } from '@/utils/validators';
+import { users } from '@/utils/api';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'auth-login',
@@ -80,11 +82,35 @@ export default {
         password: undefined
       },
       credentials: {
-        email: '',
-        password: ''
+        email: 'hola@gmail.com',
+        password: 'HolaChau@123'
       },
       isPasswordVisible: false,
-      refVForm: undefined
+    }
+  },
+  methods: {
+    ...mapActions("notify", ["doSetNotify"]),
+    onSubmit(){
+      if(this.$refs.refVForm){
+        const validate = this.$refs.refVForm.validate()
+        if(validate){
+          const userFind = users.find(el => el.email === this.credentials.email && el.password === this.credentials.password)
+          if(userFind){
+            localStorage.setItem('token', userFind.email)
+            window.location = '/home'
+            this.doSetNotify({
+              type: "success",
+              message: 'Logeado con éxito',
+            });
+          }else {
+            //TODO: agregar toastify
+            this.doSetNotify({
+              type: "error",
+              message: 'Error usuario no encontrado',
+            });
+          }
+        }
+      }
     }
   }
 }

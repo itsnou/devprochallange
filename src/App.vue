@@ -1,25 +1,23 @@
 <template>
   <v-app>
-    <router-view name="sidebar" />
-    <router-view name="header" :handleSettingsDrawer="handleSettingsDrawer" />
     <v-main>
       <router-view/>
     </v-main>
+    <snackbar-notify />
+
   </v-app>
 </template>
 
 <script>
+import SnackbarNotify from '@/components/Notify/Snackbar'
 
 export default {
   name: 'App',
-
+  components: {
+    SnackbarNotify
+  },
   data: () => ({
     //
   }),
-  methods: {
-    handleSettingsDrawer() {
-      this.settingsDrawer = !this.settingsDrawer;
-    },
-  },
 };
 </script>
