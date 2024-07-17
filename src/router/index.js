@@ -30,7 +30,6 @@ router.afterEach(() => {
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log('paso', to)
     // si la ruta requiere autorización, verifica que el usuario esté logueado
     // si no, redirecciona al login.
     if (!localStorage.getItem('token')) {      

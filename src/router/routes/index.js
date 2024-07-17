@@ -9,11 +9,11 @@ export default [
 	},
 	{
 		params: {
-			path: "/home",
+			path: "/dashboard",
 			name: "pages-home",
 			meta: { requiresAuth: true },
 		},
-		defaultComponentPath: "Pages/Home/index",
+		defaultComponentPath: "Pages/Home/Dashboard",
 	},
 	{
 	params: {

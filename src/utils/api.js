@@ -7,5 +7,6 @@ export const users = [
     { email: 'laura@gmail.com', password: 'Laura@123' },
     { email: 'jose@yahoo.com', password: 'Jose@123' },
     { email: 'marta@hotmail.com', password: 'Marta@123' },
-    { email: 'sara@gmail.com', password: 'Sara@123' }
+    { email: 'sara@gmail.com', password: 'Sara@123' },
+    { email: 'hola@gmail.com', password: 'HolaChau@123' }
 ];

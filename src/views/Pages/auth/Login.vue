@@ -97,7 +97,7 @@ export default {
           const userFind = users.find(el => el.email === this.credentials.email && el.password === this.credentials.password)
           if(userFind){
             localStorage.setItem('token', userFind.email)
-            window.location = '/home'
+            window.location = '/'
             this.doSetNotify({
               type: "success",
               message: 'Logeado con éxito',

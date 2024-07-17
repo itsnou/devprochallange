@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
     <snackbar-notify />
 
@@ -14,7 +14,7 @@ import SnackbarNotify from '@/components/Notify/Snackbar'
 export default {
   name: 'App',
   components: {
-    SnackbarNotify
+    SnackbarNotify,
   },
   data: () => ({
     //
