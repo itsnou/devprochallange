@@ -1,10 +1,14 @@
 // DonutChart.vue
 <template>
   <default-layout>
-    <div class="circular-dashboard-container d-flex pa-5">
-      <div v-for="(item, index) in dataCircularProgress" :key="index">
-        <CircularProgressBar :dataCircularProgress="item" :initialTimeFram="item.selected" class="circular-progress" :key="item.name + index"/>
+    <div class="d-flex pa-5 w-100 h-100">
+      <div class="circular-dashboard-container d-flex">
+        <div v-for="(item, index) in dataCircularProgress" :key="index">
+          <CircularProgressBar :dataCircularProgress="item" :initialTimeframe="item.selected" class="circular-progress" :key="item.name + index"/>
+        </div>
+        <HealthMonitoring class="mt-7"/>
       </div>
+      <VaccinationSchedule class="ml-7"/>
     </div>
   </default-layout>
 </template>
@@ -12,62 +16,23 @@
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout'
 import CircularProgressBar from '@/components/CircularProgressBar'
+import VaccinationSchedule from '@/components/VaccinationSchedule'
+import HealthMonitoring from '@/components/HealthMonitoring'
+
+import { dataCircularProgress } from '@/utils/api'
+
 
 export default {
   name: 'pages-dashboard',
   components: {
     DefaultLayout,
-    CircularProgressBar
+    CircularProgressBar,
+    VaccinationSchedule,
+    HealthMonitoring
   },
   data() {
     return {
-      dataCircularProgress: [
-        {
-          name: 'ACTIVITY',
-          options: [
-            {
-              title: 'Daily',
-              percentage: '25%'
-            },
-            {
-              title: 'Weekly',
-              percentage: '59%'
-            }
-          ],
-          color: '#E53761',
-          selected: 'Daily'
-        },
-        {
-          name: 'SLEEP',
-          options: [
-            {
-              title: 'Daily',
-              percentage: '45%'
-            },
-            {
-              title: 'Weekly',
-              percentage: '79%'
-            }
-          ],
-          color: '#27A468',
-          selected: 'Weekly'
-        },
-        {
-          name: 'WELNESS',
-          options: [
-            {
-              title: 'Daily',
-              percentage: '23%'
-            },
-            {
-              title: 'Weekly',
-              percentage: '52%'
-            }
-          ],
-          color: '#F2A735',
-          selected: 'Weekly'
-        }
-      ]
+      dataCircularProgress: dataCircularProgress
     }
   }
 }
@@ -76,7 +41,7 @@ export default {
 <style scoped lang="scss">
 .circular-dashboard-container{
   width: 883px;
-  gap: 20px !important;
+  gap: 25px !important;
 }
 
 .circular-progress{
