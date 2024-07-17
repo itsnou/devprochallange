@@ -8,6 +8,7 @@
       </div>
       <VaccinationSchedule class="vaccination-schedule"/>
       <HealthMonitoring class="health-monitoring"/>
+      <Chat class="chat mt-7"/>
     </div>
   </default-layout>
 </template>
@@ -16,6 +17,7 @@
 import DefaultLayout from '@/layouts/DefaultLayout'
 import CircularProgressBar from '@/components/CircularProgressBar'
 import VaccinationSchedule from '@/components/VaccinationSchedule'
+import Chat from '@/components/Chat'
 import HealthMonitoring from '@/components/HealthMonitoring'
 
 import { dataCircularProgress } from '@/utils/api'
@@ -26,7 +28,8 @@ export default {
     DefaultLayout,
     CircularProgressBar,
     VaccinationSchedule,
-    HealthMonitoring
+    HealthMonitoring,
+    Chat
   },
   data() {
     return {
@@ -41,7 +44,8 @@ export default {
   display: grid;
   grid-template-areas: 
     "circular-dashboard-container circular-dashboard-container circular-dashboard-container vaccination-schedule "
-    "health-monitoring health-monitoring health-monitoring vaccination-schedule";
+    "health-monitoring health-monitoring health-monitoring vaccination-schedule"
+    "health-monitoring health-monitoring health-monitoring chat";
   grid-template-columns: repeat(3, 1fr) 1.5fr;
   grid-template-rows: auto 1fr;
   gap: 5px;
@@ -62,12 +66,18 @@ export default {
 .vaccination-schedule {
   grid-area: vaccination-schedule;
   border-radius: 16px !important;
-  width: 667px;
+  width: 680px;
 }
 
 .health-monitoring {
   grid-area: health-monitoring;
   min-width: 887px;
+  border-radius: 16px !important;
+}
+
+.chat{
+  grid-area: chat;
+  min-width: 680px;
   border-radius: 16px !important;
 }
 </style>
