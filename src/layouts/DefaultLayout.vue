@@ -1,8 +1,32 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-app-bar app>
-        Title
+      <v-app-bar app flat>
+        <v-container class="py-0 fill-height">
+          <v-row align="center" justify="space-between">
+            <v-col cols="8">
+              <v-text-field
+                flat
+                solo
+                hide-details
+                prepend-inner-icon="mdi-magnify"
+                label="Search"
+                class="search"
+              ></v-text-field>
+            </v-col>
+            <v-col class="d-flex justify-end align-center">
+              <v-btn icon class="mr-4">
+                <v-icon>mdi-clock-outline</v-icon>
+              </v-btn>
+              <v-btn icon class="mr-4">
+                <v-icon>mdi-bell-outline</v-icon>
+              </v-btn>
+              <v-btn color="primary" class="btn">
+                Add widget
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-app-bar>
       <v-navigation-drawer permanent app class="px-4">
         <v-list nav dense class="px-2">
@@ -72,5 +96,12 @@ export default {
   background-color: #3788E5;
   color: white;
   border-radius: 16px;
+}
+.v-text-field--solo-inverted.v-input--is-focused > .v-input__control {
+  background: white;
+}
+:deep(.search){
+  border-radius: 8px;
+  background-color: #DAE3F8;
 }
 </style>

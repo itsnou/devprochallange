@@ -21,3 +21,10 @@ export default {
   }),
 };
 </script>
+
+
+<style scoped>
+:deep(.btn) {
+  border-radius: 8px; 
+}
+</style>
