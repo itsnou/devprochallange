@@ -15,12 +15,11 @@
       <v-progress-circular
         :rotate="-90"
         :size="150"
-        rounded
         :width="15"
         :value="percentage"
         :color="dataCircularProgress.color"
       >
-        <span class="display-1">{{ percentage }}%</span>
+        <span class="display-1">{{ percentage }}</span>
       </v-progress-circular>
     </div>
   </v-card>
@@ -70,5 +69,9 @@ export default {
 }
 .circular-card{
   border-radius: 16px !important;
+}
+
+:deep(.v-progress-circular__overlay) { 
+  stroke-linecap: round; 
 }
 </style>
