@@ -30,7 +30,7 @@
       </v-app-bar>
       <v-navigation-drawer permanent app class="px-4">
         <v-list nav dense class="px-2">
-          <v-list-item link href="/">
+          <v-list-item @click="goToDashboard">
             <div class="d-flex gap-2 mx-auto">
               <img src="@/assets/logo.png" />
               <v-list-item-title class="title">PetCare.</v-list-item-title>
@@ -72,9 +72,11 @@ export default {
   name: 'default-layout',
   methods: {
     logout() {
-      console.log('entro')
       localStorage.removeItem('token');
-      window.location= '/login'
+      this.$router.push('/login')
+    },
+    goToDashboard() {
+      this.$router.push('/dashboard')
     }
   },
   computed: {

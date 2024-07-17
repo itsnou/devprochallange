@@ -1,6 +1,11 @@
 <template>
   <auth-layout>
-    <VCardText >
+    <v-card-text>
+      <h2>
+        Registrate para poder acceder al sistema  
+      </h2>
+    </v-card-text>
+    <VCardText>
       <VForm
         ref="refVForm"
         class="form-container"
@@ -22,12 +27,6 @@
 
           <!-- password -->
           <VCol cols="12">
-            <router-link
-              class="mb-1"
-              :to="{name: 'auth-recovery-pass'}"
-            >
-              ¿Olvidaste tu contraseña?
-            </router-link>
             <v-text-field
               v-model="credentials.password"
               label="Contraseña"
@@ -44,16 +43,16 @@
               block
               type="submit"
             >
-              Iniciar sesión
+              Registrarse
             </VBtn>
           </VCol>
         </VRow>
       </VForm>
     </VCardText>
     <VCardText class="mx-auto text-center">
-      Eres nuevo?
-      <router-link :to="{name: 'auth-register'}" class="text-verde">
-       Registrate
+      Ya tienes cuenta?
+      <router-link :to="{name: 'auth-login'}" class="text-verde">
+        Logeate
       </router-link>
     </VCardText>
   </auth-layout>
@@ -62,10 +61,10 @@
 <script>
 import authLayout from '@/layouts/Auth.vue'
 import { requiredValidator, emailValidator, passwordValidator } from '@/utils/validators';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
-  name: 'auth-login',
+  name: 'auth-register',
   components: {
     authLayout
   },
@@ -81,35 +80,28 @@ export default {
         password: undefined
       },
       credentials: {
-        email: 'hola@gmail.com',
-        password: 'HolaChau@123'
+        email: 'nuevoUsuario@gmail.com',
+        password: 'Contraseña@123'
       },
       isPasswordVisible: false,
     }
   },
-  computed: {
-    ...mapGetters('auth', ['getUserList']),
-  },
   methods: {
     ...mapActions("notify", ["doSetNotify"]),
+    ...mapActions("auth", ['doAddNewUser']),
     onSubmit(){
       if(this.$refs.refVForm){
         const validate = this.$refs.refVForm.validate()
         if(validate){
-          const userFind = this.getUserList.find(el => el.email === this.credentials.email && el.password === this.credentials.password)
-          if(userFind){
-            localStorage.setItem('token', userFind.email)
-            this.$router.push('/')
-            this.doSetNotify({
-              type: "success",
-              message: 'Logeado con éxito',
-            });
-          }else {
-            //TODO: agregar toastify
+          try{
+            this.doAddNewUser(this.credentials)
+          } catch(error) {
             this.doSetNotify({
               type: "error",
-              message: 'Error usuario no encontrado',
+              message: 'Error el usuario ya existe!',
             });
+          }finally{
+            this.$router.push('/login')
           }
         }
       }

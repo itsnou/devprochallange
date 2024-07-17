@@ -1,11 +1,19 @@
 export default [
-    {
+	{
 		params: {
 			path: "/login",
 			name: "auth-login",
 			meta: { requiresAuth: false },
 		},
 		defaultComponentPath: "Pages/auth/Login",
+	},
+	{
+		params: {
+			path: "/register",
+			name: "auth-register",
+			meta: { requiresAuth: false },
+		},
+		defaultComponentPath: "Pages/auth/Register",
 	},
 	{
 		params: {
@@ -16,11 +24,11 @@ export default [
 		defaultComponentPath: "Pages/Home/Dashboard",
 	},
 	{
-	params: {
-		path: "*",
-		name: "PageNotFound",
-		meta: { layout: "full", requiresAuth: false },
-	},
-	defaultComponentPath: "Pages/Errors/Error404",
+		params: {
+			path: "*",
+			name: "PageNotFound",
+			meta: { layout: "full", requiresAuth: false },
+		},
+		defaultComponentPath: "Pages/Errors/Error404",
 	}
 ]
