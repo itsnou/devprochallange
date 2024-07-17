@@ -1,14 +1,13 @@
-// DonutChart.vue
 <template>
   <default-layout>
-    <div class="d-flex pa-5 w-100 h-100">
-      <div class="circular-dashboard-container d-flex">
+    <div class="dashboard-container">
+      <div class="circular-dashboard-container">
         <div v-for="(item, index) in dataCircularProgress" :key="index">
           <CircularProgressBar :dataCircularProgress="item" :initialTimeframe="item.selected" class="circular-progress" :key="item.name + index"/>
         </div>
-        <HealthMonitoring class="mt-7"/>
       </div>
-      <VaccinationSchedule class="ml-7"/>
+      <VaccinationSchedule class="vaccination-schedule"/>
+      <HealthMonitoring class="health-monitoring"/>
     </div>
   </default-layout>
 </template>
@@ -20,7 +19,6 @@ import VaccinationSchedule from '@/components/VaccinationSchedule'
 import HealthMonitoring from '@/components/HealthMonitoring'
 
 import { dataCircularProgress } from '@/utils/api'
-
 
 export default {
   name: 'pages-dashboard',
@@ -39,13 +37,37 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.circular-dashboard-container{
-  width: 883px;
-  gap: 25px !important;
+.dashboard-container {
+  display: grid;
+  grid-template-areas: 
+    "circular-dashboard-container circular-dashboard-container circular-dashboard-container vaccination-schedule "
+    "health-monitoring health-monitoring health-monitoring vaccination-schedule";
+  grid-template-columns: repeat(3, 1fr) 1.5fr;
+  grid-template-rows: auto 1fr;
+  gap: 5px;
+  padding: 26px;
+}
+
+.circular-dashboard-container {
+  grid-area: circular-dashboard-container;
+  display: flex;
+  width: 887px;
+  gap: 25px;
 }
 
 .circular-progress{
   width: 278px;
-  
+  height: 300px;
+}
+.vaccination-schedule {
+  grid-area: vaccination-schedule;
+  border-radius: 16px !important;
+  width: 667px;
+}
+
+.health-monitoring {
+  grid-area: health-monitoring;
+  min-width: 887px;
+  border-radius: 16px !important;
 }
 </style>
