@@ -1,24 +1,38 @@
 # devprochallange
 
-## Project setup
+Para correr este proyecto es necesario:
+
+## Instalar dependencias
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Para correrlo en local
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Para deployar en prod
 ```
 npm run build
 ```
 
-### Lints and fixes files
+## No posee conexión a ningún backend, estas son las cuentas permitidas
 ```
-npm run lint
+[    
+    { email: 'pepe@gmail.com', password: 'Pepe@123' },
+    { email: 'juan@yahoo.com', password: 'Juan@123' },
+    { email: 'maria@hotmail.com', password: 'Maria@123' },
+    { email: 'luis@yahoo.com', password: 'Luis@123' },
+    { email: 'carlos@hotmail.com', password: 'Carlos@123' },
+    { email: 'laura@gmail.com', password: 'Laura@123' },
+    { email: 'jose@yahoo.com', password: 'Jose@123' },
+    { email: 'marta@hotmail.com', password: 'Marta@123' },
+    { email: 'sara@gmail.com', password: 'Sara@123' },
+    { email: 'hola@gmail.com', password: 'HolaChau@123' }
+]
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Para customizar o agregar mas dependencias al proyecto
+Ver [Configuración de referencia](https://cli.vuejs.org/config/).

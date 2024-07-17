@@ -43,8 +43,8 @@
               :key="idx"
               :to="item.url"
               link
-              @click="item.action ? $emit(item.action) : null"
-              :class="item.action ? 'logout' : ''"
+              @click="item.name === 'logout' ? logout() : null"
+              :class="item.name === 'logout' ? 'logout' : ''"
             >
               <v-list-item-icon>
                 <v-icon :color="item.iconColor || ''">{{ item.icon }}</v-icon>
@@ -72,7 +72,9 @@ export default {
   name: 'default-layout',
   methods: {
     logout() {
-      console.log('Logging out...');
+      console.log('entro')
+      localStorage.removeItem('token');
+      window.location= '/login'
     }
   },
   computed: {
