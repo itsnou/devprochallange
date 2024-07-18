@@ -12,7 +12,7 @@ npm install
 npm run serve
 ```
 
-### Para deployar en prod
+### Para generar build para deployar
 ```
 npm run build
 ```
