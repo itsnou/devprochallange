@@ -39,7 +39,7 @@
               @click:append="isPasswordVisible = !isPasswordVisible"
             />
             <VBtn
-              class="btn"
+              class="btn mt-5"
               block
               type="submit"
             >
@@ -80,8 +80,8 @@ export default {
         password: undefined
       },
       credentials: {
-        email: 'nuevoUsuario@gmail.com',
-        password: 'Contraseña@123'
+        email: '',
+        password: ''
       },
       isPasswordVisible: false,
     }

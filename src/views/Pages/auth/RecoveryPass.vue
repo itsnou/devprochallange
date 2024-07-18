@@ -1,6 +1,11 @@
 <template>
   <auth-layout>
-    <VCardText >
+    <v-card-text>
+      <h2>
+        Recupera tu contraseña
+      </h2>
+    </v-card-text>
+    <VCardText>
       <VForm
         ref="refVForm"
         class="form-container"
@@ -22,12 +27,6 @@
 
           <!-- password -->
           <VCol cols="12">
-            <router-link
-              class="mb-1"
-              :to="{name: 'auth-recovery'}"
-            >
-              ¿Olvidaste tu contraseña?
-            </router-link>
             <v-text-field
               v-model="credentials.password"
               label="Contraseña"
@@ -39,21 +38,32 @@
               :append-icon="isPasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="isPasswordVisible = !isPasswordVisible"
             />
+            <v-text-field
+              v-model="credentials.confirmPassword"
+              label="Confirmar contraseña"
+              placeholder="············"
+              autocomplete="false"
+              :type="isPasswordVisible ? 'text' : 'password'"
+              :rules="[rules.requiredValidator, rules.passwordValidator, rules.confirmedValidator(credentials.confirmPassword, credentials.password)]"
+              :error-messages="errors.password"
+              :append-icon="isPasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="isPasswordVisible = !isPasswordVisible"
+            />
             <VBtn
               class="btn mt-5"
               block
               type="submit"
             >
-              Iniciar sesión
+              Recuperar contraseña
             </VBtn>
           </VCol>
         </VRow>
       </VForm>
     </VCardText>
     <VCardText class="mx-auto text-center">
-      Eres nuevo?
-      <router-link :to="{name: 'auth-register'}" class="text-verde">
-       Registrate
+      Ya tienes cuenta?
+      <router-link :to="{name: 'auth-login'}" class="text-verde">
+        Logeate
       </router-link>
     </VCardText>
   </auth-layout>
@@ -61,11 +71,11 @@
 
 <script>
 import authLayout from '@/layouts/Auth.vue'
-import { requiredValidator, emailValidator, passwordValidator } from '@/utils/validators';
-import { mapActions, mapGetters } from 'vuex';
+import { requiredValidator, emailValidator, passwordValidator, confirmedValidator } from '@/utils/validators';
+import { mapActions } from 'vuex';
 
 export default {
-  name: 'auth-login',
+  name: 'auth-recovery',
   components: {
     authLayout
   },
@@ -74,7 +84,8 @@ export default {
       rules: {
         requiredValidator,
         emailValidator,
-        passwordValidator
+        passwordValidator,
+        confirmedValidator
       },
       errors: {
         email: undefined,
@@ -82,33 +93,26 @@ export default {
       },
       credentials: {
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
       },
       isPasswordVisible: false,
     }
   },
-  computed: {
-    ...mapGetters('auth', ['getUserList']),
-  },
   methods: {
     ...mapActions("notify", ["doSetNotify"]),
+    ...mapActions("auth", ['doUpdatePassword']),
     onSubmit(){
       if(this.$refs.refVForm){
         const validate = this.$refs.refVForm.validate()
         if(validate){
-          const userFind = this.getUserList.find(el => el.email === this.credentials.email && el.password === this.credentials.password)
-          if(userFind){
-            localStorage.setItem('token', userFind.email)
-            this.$router.push('/')
-            this.doSetNotify({
-              type: "success",
-              message: 'Logeado con éxito',
-            });
-          }else {
-            //TODO: agregar toastify
+          try{
+            this.doUpdatePassword(this.credentials)
+            this.$router.push('/login')
+          } catch(error) {
             this.doSetNotify({
               type: "error",
-              message: 'Error usuario no encontrado',
+              message: 'Error el usuario no existe',
             });
           }
         }

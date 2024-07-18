@@ -28,3 +28,6 @@ export const passwordValidator = (password) => {
 
   return validPassword || `Una mayúscula, una minúscula, un carácter especial y un dígito con un mínimo de 8 caracteres.`
 }
+
+// 👉 Confirm Password Validator
+export const confirmedValidator = (value, target) => value === target || 'Las contraseñas no son identicas'

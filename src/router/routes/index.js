@@ -17,6 +17,14 @@ export default [
 	},
 	{
 		params: {
+			path: "/recovery",
+			name: "auth-recovery",
+			meta: { requiresAuth: false },
+		},
+		defaultComponentPath: "Pages/auth/RecoveryPass",
+	},
+	{
+		params: {
 			path: "/dashboard",
 			name: "pages-home",
 			meta: { requiresAuth: true },
