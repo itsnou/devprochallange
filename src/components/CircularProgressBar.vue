@@ -8,8 +8,12 @@
         dense
         outlined
         hide-details
-        class="timeframe-select"
-      ></v-select>
+        class="timeframe-select selects"
+      >
+        <template v-slot:selection="{ item }">
+          <span class="font-weight-medium">{{ item }}</span>
+        </template>
+      </v-select>
     </div>
     <div class="text-center">
       <v-progress-circular
@@ -74,4 +78,5 @@ export default {
 :deep(.v-progress-circular__overlay) { 
   stroke-linecap: round; 
 }
+
 </style>

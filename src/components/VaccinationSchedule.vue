@@ -12,7 +12,7 @@
         hide-details 
         dense 
         outlined
-        class="mr-4" 
+        class="mr-4 selects" 
         style="max-width: 200px;"></v-text-field>
         
         <v-select
@@ -22,12 +22,13 @@
         dense 
         outlined 
         hide-details
+        class="selects"
         style="max-width: 150px;"></v-select>
       </div>
     </v-card-title>
     <div class="pa-5 px-10">
       <v-data-table :headers="headers" :items="filteredVaccinations" :search="search" hide-default-footer
-        class="elevation-1 row-height-50">
+        class="elevation-1 row-height-50 custom-border-table">
         <template v-slot:[`item.type`]="{ item }">
           <v-chip :color="getTypeColor(item.type)" small>
             {{ item.type }}
@@ -102,5 +103,25 @@ export default {
 
 :deep(.v-data-table.row-height-50 td) {
   height: 86px !important;
+}
+
+:deep(.custom-border-table) {
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+
+  td:last-child, th:last-child {
+    border-right: none;
+  }
+
+  thead tr:first-child th:first-child { border-top-left-radius: 8px; }
+  thead tr:first-child th:last-child { border-top-right-radius: 8px; }
+
+  tbody tr:last-child td:first-child { border-bottom-left-radius: 0; }
+  tbody tr:last-child td:last-child { border-bottom-right-radius: 0; }
 }
 </style>

@@ -8,7 +8,7 @@
       </div>
       <VaccinationSchedule class="vaccination-schedule"/>
       <HealthMonitoring class="health-monitoring"/>
-      <Chat class="chat mt-7"/>
+      <Chat class="chat"/>
     </div>
   </default-layout>
 </template>
@@ -48,19 +48,20 @@ export default {
     "health-monitoring health-monitoring health-monitoring chat";
   grid-template-columns: repeat(3, 1fr) 1.5fr;
   grid-template-rows: auto 1fr;
-  gap: 5px;
+  gap: 24px;
   padding: 26px;
+  background-color: #f2f5fa;
 }
 
 .circular-dashboard-container {
   grid-area: circular-dashboard-container;
   display: flex;
   width: 887px;
-  gap: 25px;
+  gap: 24px;
 }
 
 .circular-progress{
-  width: 278px;
+  width: 280px;
   height: 300px;
 }
 .vaccination-schedule {
@@ -79,5 +80,13 @@ export default {
   grid-area: chat;
   min-width: 680px;
   border-radius: 16px !important;
+}
+
+:deep(.selects .v-icon) {
+  color: #3788E5 !important;
+}
+
+:deep(.selects .v-input__slot) {
+  border-radius: 10px !important;
 }
 </style>

@@ -12,7 +12,10 @@
         </v-list-item-content>
         <v-list-item-action>
           <span>{{ item.time }}</span>
-          <v-badge v-if="item.badge" color="red" :content="item.badge" overlap>
+          <v-badge v-if="item.badge" color="red" :content="item.badge" overlap class="rect" inline>
+            <template v-slot:badge>
+              <div class="my-badge">{{item.badge}}</div>
+            </template>
           </v-badge>
         </v-list-item-action>
       </v-list-item>

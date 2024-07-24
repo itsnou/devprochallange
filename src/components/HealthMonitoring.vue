@@ -9,6 +9,7 @@
         outlined
         hide-details
         style="max-width: 150px;"
+        class="selects"
       ></v-select>
     </v-card-title>
     <v-card-text>
@@ -30,7 +31,6 @@
           Calories burned
         </v-btn>
       </v-btn-toggle>
-      
       <div class="chart-container">
         <line-chart ref="lineChart" :chart-data="chartData" :options="chartOptions" />
       </div>
@@ -80,6 +80,16 @@ export default {
               beginAtZero: true
             }
           }]
+        },
+        plugins: {
+        filler: {
+          propagate: true
+        }
+        },
+        elements: {
+          line: {
+            tension: 0.4 // Esto hace que la línea sea más suave
+          }
         }
       }
     }
@@ -106,14 +116,20 @@ export default {
     },
     updateChartData() {
       const labels = this.getLabelsBasedOnTimeframe()
+      const ctx = document.createElement('canvas').getContext('2d')
+      const gradient = ctx.createLinearGradient(0, 0, 0, 400)
+      gradient.addColorStop(0, 'rgba(55, 136, 229, 0.6)')
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.1)')
+
       this.chartData = {
         labels: labels,
         datasets: [{
           label: this.selectedMetric.charAt(0).toUpperCase() + this.selectedMetric.slice(1),
           data: this.metrics[this.selectedMetric],
           borderColor: '#3788E5',
-          backgroundColor: 'rgba(55, 136, 229, 0.1)',
+          backgroundColor: gradient,
           fill: true,
+          tension: 0.4,
         }]
       }
     }
@@ -151,7 +167,6 @@ export default {
 .health-monitoring {
   width: 100%;
   max-width: 800px;
-  margin-top: 20px;
 }
 
 .chart-container {

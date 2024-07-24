@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-app-bar app flat>
+      <v-app-bar app color="white">
         <v-container class="py-0 fill-height">
           <v-row align="center" justify="space-between">
             <v-col cols="8">
               <v-text-field
-                flat
                 solo
                 hide-details
+                dense
                 prepend-inner-icon="mdi-magnify"
                 label="Search"
                 class="search"
@@ -37,7 +37,7 @@
             </div>
           </v-list-item>
           <div v-for="(section, index) in getMenuItems" :key="index">
-            <v-subheader v-if="section.section">{{ section.section }}</v-subheader>
+            <v-subheader v-if="section.section" class="section-name">{{ section.section }}</v-subheader>
             <v-list-item
               v-for="(item, idx) in section.items"
               :key="idx"
@@ -49,13 +49,16 @@
               <v-list-item-icon>
                 <v-icon :color="item.iconColor || ''">{{ item.icon }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-title :class="item.titleClass || ''">{{ item.title }}</v-list-item-title>
+              <v-list-item-title :class="item.titleClass || 'simple-title'">{{ item.title }}</v-list-item-title>
               <v-list-item-action v-if="item.badge">
-                <v-badge :color="item.badge.color" :content="item.badge.content" overlap>
-                  <v-icon>{{ item.badge.icon }}</v-icon>
+                <v-badge :color="item.badge.color" class="rect" inline>
+                  <template v-slot:badge>
+                    <div class="my-badge">{{item.badge.content}}</div>
+                  </template>
                 </v-badge>
               </v-list-item-action>
             </v-list-item>
+            <v-divider v-if="index < getMenuItems.length - 2" class="my-2" color="#DAE3F8"></v-divider>
           </div>
         </v-list>
       </v-navigation-drawer>
@@ -87,7 +90,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .v-list-item__action {
   margin-left: auto;
 }
@@ -106,6 +109,35 @@ export default {
 }
 :deep(.search){
   border-radius: 8px;
-  background-color: #DAE3F8;
+  width: 887px;
+}
+
+:deep(.rect .v-badge__badge) {
+  border-radius: 8px;
+}
+
+:deep(.my-badge) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  font-size: 14px;
+  height: 100%;
+  color: #fff;
+}
+
+.section-name {
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 70%;
+  color: #0B1C33;
+  line-height: 22.4px;
+}
+
+.simple-title{
+  font-weight: 500;
+  font-size: 16px;
+  color: #0B1C33;
+  line-height: 22.4px;
 }
 </style>

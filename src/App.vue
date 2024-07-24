@@ -24,6 +24,15 @@ export default {
 
 
 <style scoped>
+body {
+  font-family: 'Rethink Sans', sans-serif !important;
+}
+:deep(.v-application) {
+  font-family: 'Rethink Sans', sans-serif !important;
+}
+:deep(.v-application .text-subtitle-1) {
+  font-family: 'Rethink Sans', sans-serif !important;
+}
 :deep(.btn) {
   border-radius: 8px; 
 }
