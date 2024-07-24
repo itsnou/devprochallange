@@ -38,6 +38,9 @@
               :append-icon="isPasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="isPasswordVisible = !isPasswordVisible"
             />
+          </VCol>
+
+          <VCol cols="12">
             <VBtn
               class="btn mt-5"
               block

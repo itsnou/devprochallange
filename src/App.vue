@@ -34,6 +34,8 @@ body {
   font-family: 'Rethink Sans', sans-serif !important;
 }
 :deep(.btn) {
-  border-radius: 8px; 
+  background-color: #3788E5 !important;
+  color: white !important;
+  border-radius: 8px !important;
 }
 </style>

@@ -101,7 +101,7 @@ export default {
 }
 .v-list-item--active{
   background-color: #3788E5;
-  color: white;
+  color: white !important;
   border-radius: 16px;
 }
 .v-text-field--solo-inverted.v-input--is-focused > .v-input__control {
@@ -137,7 +137,6 @@ export default {
 .simple-title{
   font-weight: 500;
   font-size: 16px;
-  color: #0B1C33;
   line-height: 22.4px;
 }
 </style>

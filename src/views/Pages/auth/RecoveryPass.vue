@@ -11,7 +11,7 @@
         class="form-container"
         @submit.prevent="onSubmit"
       >
-        <VRow>
+        <VRow cols="12">
           <!-- email -->
           <VCol cols="12">
             <v-text-field
@@ -38,6 +38,9 @@
               :append-icon="isPasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="isPasswordVisible = !isPasswordVisible"
             />
+          </VCol>
+          <!-- repeat-password -->
+          <VCol cols="12">
             <v-text-field
               v-model="credentials.confirmPassword"
               label="Confirmar contraseña"
@@ -49,6 +52,8 @@
               :append-icon="isPasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="isPasswordVisible = !isPasswordVisible"
             />
+          </VCol>
+          <VCol cols="12">
             <VBtn
               class="btn mt-5"
               block
